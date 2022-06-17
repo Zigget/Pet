@@ -1,12 +1,26 @@
+'''
+All code was assembled by myself, Samuel Sidzyik.
+I pulled bits and pieces from various sources but not one line of this file was written by anyone other than myself.
+
+'''
 import psycopg2
 import dotenv
 import os
-dotenv.load_dotenv(dotenv.find_dotenv())
 
+#Check pet insurability and cost
+#
+#
+#
+#
+#
 
-
-
+'''
+Establishes connection to Pet Database on Azure server
+Framework for the connection pulled from Microsoft Azure's help file:
+https://docs.microsoft.com/en-us/azure/postgresql/single-server/connect-python
+'''
 def test_connect():
+    dotenv.load_dotenv(dotenv.find_dotenv())
     host = "pmisev1.postgres.database.azure.com"
     dbname = "PetFinal"
     user = "owner"
@@ -37,4 +51,3 @@ def test_connect():
     conn.commit()
     cursor.close()
     conn.close()
-test_connect()
