@@ -7,12 +7,30 @@ import psycopg2
 import dotenv
 import os
 
-#Check pet insurability and cost
-#
-#
-#
-#
-#
+#Display 'start/current? date' of program
+
+#-Check pet insurability and cost *1
+#-Policyowner options
+#   -Add pet to policy *1
+#   -Remove pet from policy
+#   -File Claim
+#   -Print policy
+#-Agent options (token login)
+#   -Policy cost chart over time (Numpy per pet and combined)
+#   -Agent's policyowners (pandas 2D)(3D over time?)
+#-Actuary options (G-Auth)
+#   -Access Agent cut
+#       -Current commission percentage
+#       -Individual agents commission
+#       -Total Amount of all agents paid next month
+#   -Access death values
+#       -Print Values (csv/json)
+#       -Change Values (sql)
+#       -Project Values (seaborn?)
+#-Time Travel*
+#   *Moves start date forward
+#   *Collects premium
+#   *Auto kills pets(gently, lol)
 
 '''
 Establishes connection to Pet Database on Azure server
