@@ -1,0 +1,108 @@
+# -- -- Concept -- --
+#Display 'start/current? date' of program
+
+#1-Check pet insurability and cost *1
+#2-Policyowner options (token?)
+#   -Login
+#       -Add pet to policy *1
+#       -Remove pet from policy
+#       -File Claim
+#       -Print policy
+#   -Signup
+#3-Agent options
+#   -Policy cost chart over time (Numpy per pet and combined)
+#   -Agent's policyowners (pandas 2D)(3D over time?)
+#4-Actuary options (G-Auth)
+#   -Access Agent cut
+#       -Current commission percentage
+#       -Individual agents commission
+#       -Total Amount of all agents paid next month
+#   -Access death values
+#       -Print Values (csv/json)
+#       -Change Values (sql)
+#       -Project Values (seaborn?)
+#4.5-Marketing?
+#   -Adjust marketing up and down to change how quick policies generate?
+#5-Time Travel*
+#   *Moves start date forward
+#   *Collects premium
+#   *Auto kills pets(gently, lol)
+#   *Auto creates policies (Marketing effect?)
+#6-Quit
+
+#Create Tables for database   
+"""
+create table Address(
+    address_id serial,
+    country varchar(3),
+    state varchar(2),
+    city varchar(20),
+    primary key(address_id)
+);
+create table Size(
+    breed_size varchar(3) unique,
+    value_modifier float
+);
+create table CostSheet(
+	funeral_kind varchar(20) unique,
+	funeral_cost money,
+	primary key(funeral_kind)
+);
+create table Login(
+    username varchar(30) unique,
+    account_type varchar(10),
+    primary key(username)
+);
+create table Agent(
+	agent_id serial,
+	agent_name varchar(50) not null,
+	address_id serial,
+    username varchar(30),
+	primary key(agent_id),
+    foreign key(address_id) references Address(address_id),
+    foreign key(username) references Login(username)
+);
+create table Policy(
+    policy_no serial,
+    agent_id serial,
+    primary key(policy_no),
+    foreign key(agent_id) references Agent(agent_id)
+);
+create table Customer(
+    customer_id serial,
+	policy_no serial,
+	owner_fname varchar(20) not null,
+    owner_lname varchar(25) not null,
+    address_id serial,
+    username varchar(30),
+	primary key(customer_id),
+    foreign key(policy_no) references Policy(policy_no),
+    foreign key(username) references Login(username),
+    foreign key(address_id) references Address(address_id)
+	);
+create table Pets(
+	pet_id serial,
+	policy_no serial not null,
+	pet_name varchar(50) not null,
+	pet_age integer not null,
+    funeral_kind varchar(20),
+    pet_alive boolean,
+	primary key(pet_id),
+	foreign key(policy_no) references Policy(policy_no),
+    foreign key(funeral_kind) references CostSheet(funeral_kind)
+	);
+create table Breeds(
+	breed_id serial,
+	breed_name varchar(20),
+	breed_lifespan integer,
+	breed_size varchar(3),
+	primary key(breed_id),
+    foreign key(breed_size) references Size(breed_size)
+	);
+
+"""
+# Create Policy
+
+# Auto Create Policies/Dogs with possible agent
+
+# Get the Policy Cost
