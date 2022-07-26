@@ -6,7 +6,6 @@ sources referenced
 https://stackoverflow.com/questions/8370943/how-to-print-name-of-class-in-python
 '''
 import getpass
-from tabnanny import check
 from connected import *
 import datetime
 import hashlib as hash
